@@ -1,0 +1,29 @@
+.ring-gallery-section{position:relative;width:100vw;margin:28px calc(50% - 50vw) 42px;overflow:hidden;background:#000;color:#fff}
+.ring-gallery-stage{position:relative;height:560px;max-height:78vh;min-height:420px;perspective:1100px;perspective-origin:50% 44%;overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;background:#000;isolation:isolate}
+.ring-gallery-stage.is-dragging{cursor:grabbing}
+.ring-gallery-stage:after{position:absolute;z-index:2;inset:auto 0 0;height:90px;content:"";pointer-events:none;background:linear-gradient(transparent,#000 90%)}
+.ring-gallery-ring{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
+.ring-gallery-item{position:absolute;left:50%;top:50%;width:clamp(102px,12vw,150px);height:clamp(178px,21vw,230px);margin:-115px 0 0 -75px;transform-style:preserve-3d;opacity:0;will-change:transform,opacity}
+.ring-gallery-face{position:absolute;inset:0;overflow:hidden;border-radius:10px;background:#111;box-shadow:0 18px 46px rgba(0,0,0,.55);backface-visibility:hidden;transition:filter .35s cubic-bezier(.22,1,.36,1),box-shadow .35s cubic-bezier(.22,1,.36,1)}
+.ring-gallery-item.is-arrived{animation:ring-gallery-bloom 1.1s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--slot) * 25ms)}
+.ring-gallery-item:hover{translate:0 -14px}.ring-gallery-item:hover .ring-gallery-face{filter:brightness(1.12);box-shadow:0 24px 55px rgba(0,0,0,.78)}
+.ring-gallery-item img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 10%;pointer-events:none;-webkit-user-drag:none}
+.ring-gallery-item figcaption{position:absolute;inset:auto 0 0;padding:32px 7px 9px;background:linear-gradient(transparent,rgba(0,0,0,.8));color:#fff;text-align:center;font-size:12px;line-height:1.35;opacity:0;transform:translateY(5px);transition:opacity .25s,transform .25s}
+.ring-gallery-item:hover figcaption{opacity:1;transform:translateY(0)}
+@keyframes ring-gallery-bloom{0%{opacity:0;filter:blur(12px);translate:0 20px;scale:.52}65%{opacity:1;filter:blur(0);translate:0 -5px;scale:1.04}100%{opacity:1;filter:blur(0);translate:0 0;scale:1}}
+.ring-gallery-viewer{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:24px;background:rgba(9,9,11,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.ring-gallery-viewer[hidden]{display:none}
+.ring-gallery-viewer:before{position:absolute;inset:0;content:"";background:#000;transform:scaleY(0);transform-origin:bottom;pointer-events:none}
+.ring-gallery-viewer.is-opening:before{animation:ring-gallery-shutter .55s cubic-bezier(.76,0,.24,1) forwards}
+@keyframes ring-gallery-shutter{0%{transform:scaleY(1)}100%{transform:scaleY(0)}}
+.ring-gallery-viewer figure{position:relative;max-width:min(88vw,700px);max-height:88vh;margin:0;text-align:center;opacity:0;transform:scale(.94);transition:opacity .35s .18s,transform .55s cubic-bezier(.22,1,.36,1) .18s}
+.ring-gallery-viewer.is-open figure{opacity:1;transform:scale(1)}
+.ring-gallery-viewer img{display:block;max-width:100%;max-height:78vh;border-radius:8px;object-fit:contain;box-shadow:0 24px 80px #0008}
+.ring-gallery-viewer figcaption{padding-top:12px;color:#fff;font-size:16px}
+.ring-gallery-close,.ring-gallery-nav{position:absolute;z-index:2;display:grid;place-items:center;width:42px;height:42px;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(20,20,20,.75);color:#fff;font-size:24px;cursor:pointer;backdrop-filter:blur(8px)}
+.ring-gallery-close{top:-15px;right:-15px}.ring-gallery-nav{top:50%;transform:translateY(-50%)}.ring-gallery-prev{left:-70px}.ring-gallery-next{right:-70px}
+@media(max-width:700px){.ring-gallery-section{margin-top:20px;margin-bottom:32px}.ring-gallery-stage{height:460px;max-height:66vh;min-height:360px;perspective:900px;perspective-origin:50% 45%}.ring-gallery-item{width:104px;height:178px;margin:-89px 0 0 -52px;border-radius:8px}.ring-gallery-viewer{padding:18px}.ring-gallery-prev{left:-6px}.ring-gallery-next{right:-6px}}
+@media(prefers-reduced-motion:reduce){.ring-gallery-item.is-arrived{animation:none;opacity:1}.ring-gallery-viewer:before{animation:none!important}}
+
+.guardians-page .ring-gallery-section{margin-top:4px;margin-bottom:20px}.guardians-page .ring-gallery-stage{height:440px;max-height:56vh;min-height:380px}
+@media(max-width:700px){.guardians-page .ring-gallery-section{margin-top:0;margin-bottom:16px}.guardians-page .ring-gallery-stage{height:360px;max-height:52vh;min-height:320px}}

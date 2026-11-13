@@ -1,0 +1,23 @@
+.streaming-heading .streaming-word {
+  display: inline;
+  color: transparent;
+  text-shadow: 0 0 7px var(--stream-ink);
+}
+
+.streaming-heading.is-streaming .streaming-word {
+  animation: streaming-word-reveal 250ms ease-out both;
+  animation-delay: var(--stream-delay, 100ms);
+}
+
+@keyframes streaming-word-reveal {
+  from { color: transparent; text-shadow: 0 0 7px var(--stream-ink); }
+  to { color: var(--stream-ink); text-shadow: 0 0 0 transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .streaming-heading .streaming-word {
+    animation: none;
+    color: var(--stream-ink);
+    text-shadow: none;
+  }
+}
