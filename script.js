@@ -297,7 +297,6 @@ if(nav){
     {href:'/live/',label:'Live Telecast',icon:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/>'},
     {href:'/schedule/',label:'Schedule',icon:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18M8 14h2M14 14h2M8 17h2"/>'},
     {href:'/gallery/',label:'Gallery',icon:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m21 15-5-5L5 20"/>'},
-    {href:'/sponsor/',label:'Sponsors',icon:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/>'},
     {href:'/contact/',label:'Contact Us',icon:'<path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 4a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>'},
     {about:true,label:'About Us',icon:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'}
   ];
@@ -308,7 +307,8 @@ if(nav){
     track.className='mail-tabs-track';
     track.setAttribute('aria-label','मुख्य नेविगेशन');
     nav.prepend(track);
-    const aboutMenu=tabItems[6].querySelector('.nav-drop-menu');
+    const aboutIndex=tabDefinitions.findIndex(def=>def.about);
+    const aboutMenu=tabItems[aboutIndex].querySelector('.nav-drop-menu');
     const basePath=new URL(document.baseURI).pathname;
     const relativePath=location.pathname.startsWith(basePath)?location.pathname.slice(basePath.length):location.pathname.replace(/^\/+/, '');
     const path=`/${relativePath}`.replace(/\/+$/,'')||'/';
@@ -372,7 +372,7 @@ if(nav){
     aboutButton?.addEventListener('click',()=>{
       const aboutIsOpen=aboutButton.parentElement.classList.contains('open');
       if(aboutMenu){aboutMenu.hidden=!aboutIsOpen;nav.classList.toggle('about-menu-open',aboutIsOpen);}
-      if(aboutIsOpen)setActiveTab(6);
+      if(aboutIsOpen)setActiveTab(aboutIndex);
       else setActiveTab(activeIndex);
     });
   }
