@@ -85,7 +85,7 @@ aboutButton?.addEventListener('click',()=>{
           }
         }
       }
-      vec2 fittedUv=(sampleScreenUv-0.5)/0.78+0.5;
+      vec2 fittedUv=sampleScreenUv;
       vec2 sampleUv=containUv(fittedUv);
       gl_FragColor=texture2D(uImage,clamp(sampleUv,vec2(0.001),vec2(0.999)));
     }
